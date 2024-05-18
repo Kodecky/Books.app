@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <!-- heading -->
-    <header>
+    <header class="app__heading">
       <h1>Books<span>.app</span></h1>
     </header>
 
@@ -11,7 +11,7 @@
       :books="books" />
 
     <!-- no books message -->
-    <p v-show="!books.length">No books...</p>
+    <!-- <p v-show="!books.length">No books...</p> -->
 
     <!-- books amount message -->
     <books-length-msg
@@ -60,3 +60,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.app {
+  width: 100%;
+  max-width: 1000px;
+  padding: 2rem;
+  margin: 0 auto;
+
+  &__heading {
+    font-size: 3rem;
+    text-align: center;
+    span {
+      color: #5a58da;
+    }
+  }
+}
+</style>
