@@ -10,9 +10,6 @@
       @remove="removeBook"
       :books="books" />
 
-    <!-- no books message -->
-    <!-- <p v-show="!books.length">No books...</p> -->
-
     <!-- books amount message -->
     <books-length-msg
       :books="books" />
@@ -33,14 +30,12 @@ import BooksList from './components/BooksList'
 import BooksLengthMsg from './components/BooksLengthMsg'
 import BooksForm from './components/BooksForm'
 import BooksSummary from './components/BooksSummary'
+import axios from 'axios'
 
 export default {
   name: 'App',
   data: () => ({
-    books: [
-      { title: 'The Catcher in the Rye', price: 20 },
-      { title: 'Of Mice and Man', price: 18 }
-    ]
+    books: []
   }),
   methods: {
     removeBook (index) {
@@ -57,6 +52,22 @@ export default {
     BooksLengthMsg,
     BooksForm,
     BooksSummary
+  },
+  created () {
+    const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/'
+    const apiUrl = 'https://api.itbook.store/1.0/search/javascript'
+
+    axios.get(corsAnywhereUrl + apiUrl)
+      .then(response => {
+        this.books = response.data.books.slice(0, 3).map(book => ({
+          title: book.title,
+          price: book.price.replace('$', '')
+        }))
+      })
+      .catch(error => {
+        this.error = 'Failed to load books. Please try again later.'
+        console.error(error)
+      })
   }
 }
 </script>

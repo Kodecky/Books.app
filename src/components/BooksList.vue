@@ -6,7 +6,7 @@
         :class="{'books-list__item--promotion': book.price < 20}"
         :key="index"
         v-for="(book, index) in books">
-        {{ book.title }}, {{ book.price }}$
+        {{ book.title }}, {{ book.price }}
         <button
           class="books-list__btn"
           @click="$emit('remove', index)">

@@ -4,14 +4,16 @@
         Title:
         <input
           v-model="form.title"
-          type="text" name="title"
+          type="text"
+          name="title"
           class="form__input">
       </label>
       <label>
         price:
         <input
           v-model="form.price"
-          type="text" name="price"
+          type="text"
+          name="price"
           class="form__input">
       </label>
       <button
